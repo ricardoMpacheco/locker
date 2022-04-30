@@ -1,28 +1,13 @@
-## Ricardo's Script Locker
+### Ricardo's Script Locker
 
 This page is used for easy access to all the scripts I have put together.
 
-### Markdown
+# [SaRA Command-Line Version](https://github.com/ricardoMpacheco/SaRACMDScript)
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+# Outlook Network Tests
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
