@@ -5,6 +5,12 @@ This page is used for easy access to all the scripts I have put together.
 ### [SaRACMDScript (Automated SaRA Command-Line Version)](https://github.com/ricardoMpacheco/SaRACMDScript)
 This small script allows the process for the usage of the SaRA support tool command-line version to be as automated as possible.
 
+The script can be easily accessed / run by running the following powershell cmdlets:
+```ps
+$SaRACMDScript = Invoke-WebRequest https://raw.githubusercontent.com/ricardoMpacheco/SaRACMDScript/main/SaRACMDScript.ps1
+Invoke-Expression ($SaRACMDScript.Content)
+```
+
 More information about the orignal tool can be found here:
   https://docs.microsoft.com/en-us/office365/troubleshoot/administration/sara-command-line-version
 
