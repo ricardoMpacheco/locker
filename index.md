@@ -2,8 +2,9 @@
 
 This page is used for easy access to all the scripts I have put together.
 
-### [SaRA Command-Line Version](https://github.com/ricardoMpacheco/SaRACMDScript)
-
+### [SaRACMDScript (Automated SaRA Command-Line Version)](https://github.com/ricardoMpacheco/SaRACMDScript)
+Powershell script to automate the log collection with SaRA command-line version
+  https://docs.microsoft.com/en-us/office365/troubleshoot/administration/sara-command-line-version
 [Download here](https://github.com/ricardoMpacheco/SaRACMDScript/zipball/master)
 
 ### [Outlook Network Tests](https://github.com/ricardoMpacheco/ONT)
