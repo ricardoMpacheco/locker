@@ -3,7 +3,7 @@
         {% endif %}
 ## Ricardo's Script Locker
 
-This1 page is used for easy access to all the scripts I have put together.
+This12 page is used for easy access to all the scripts I have put together.
 
 ### [SaRA Command-Line Version](https://github.com/ricardoMpacheco/SaRACMDScript)
 
