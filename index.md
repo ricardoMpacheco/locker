@@ -1,3 +1,6 @@
+{% if site.github.is_project_page %}
+          <a href="{{ site.github.repository_url }}" class="button"><small>View project on123</small> GitHub</a>
+        {% endif %}
 ## Ricardo's Script Locker
 
 This page is used for easy access to all the scripts I have put together.
