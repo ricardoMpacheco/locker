@@ -15,11 +15,10 @@ This powershell script will perform a range of connectivity tests to Office 365 
 This script will also check the machine settings for proxy servers and at the end provide articles that can be helpfull for further understanding of recommendations and best practices related to networking configurations in Office 365
 
 The script can be easily accessed / run by running the following powershell cmdlets:
-
+```ps
 $ONTScript = Invoke-WebRequest https://aka.ms/ONT
-
 Invoke-Expression $($ONTScript.Content)
-
+```
 or by downloading it directly from the button to the right.
 
 
