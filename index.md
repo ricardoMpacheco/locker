@@ -10,10 +10,8 @@ The script can be easily accessed / run by running the following powershell cmdl
 $SaRACMDScript = Invoke-WebRequest https://raw.githubusercontent.com/ricardoMpacheco/SaRACMDScript/main/SaRACMDScript.ps1
 Invoke-Expression ($SaRACMDScript.Content)
 ```
-
-More information about the orignal tool can be found here:
-  https://docs.microsoft.com/en-us/office365/troubleshoot/administration/sara-command-line-version
-
+  
+ <a href="https://docs.microsoft.com/en-us/office365/troubleshoot/administration/sara-command-line-version" target="_blank">More information about the orignal tool can be found in this article.</a>
 
 ### [Outlook Network Tests](https://github.com/ricardoMpacheco/ONT)
 
