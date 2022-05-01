@@ -16,7 +16,7 @@ This script will also check the machine settings for proxy servers and at the en
 
 The script can be easily accessed / run by running the following powershell cmdlets:
 ```ps
-$ONTScript = Invoke-WebRequest https://aka.ms/ONT
+$ONTScript = Invoke-WebRequest https://raw.githubusercontent.com/ricardoMpacheco/ONT/master/ONT.ps1
 Invoke-Expression $($ONTScript.Content)
 ```
 or by downloading it directly from the button to the right.
