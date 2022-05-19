@@ -33,7 +33,9 @@ FiddlerChecker allows it's user to understand if a Fiddler trace (.saz) file has
 The script can be access by downloading it directly from the button to the right. The password for the file is FiddlerChecker.
 
 1.Export The files inside the zip
+
 2.Double click the .bat file named "FiddlerChecker"
+
 3.Follow the steps
 
 
