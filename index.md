@@ -26,5 +26,14 @@ Invoke-Expression ($ONTScript.Content)
 or by downloading it directly from the button to the right.
 
 
+### [Outlook Network Tests](https://github.com/ricardoMpacheco/ONT)
+
+FiddlerChecker allows it's user to understand if a Fiddler trace (.saz) file has been collected correctly (HTTPS Decryption was performed). It's under development the hability to understand without any additional type of knowledge, if the are observing EWS calls, MAPI calls or other errors are found within the Fiddler trace without actually opening it or inspecting it. Giving a small idea of the if the file will possibly contain valuable data or not.
+
+The script can be access by downloading it directly from the button to the right. The password for the file is FiddlerChecker.
+
+1.Export The files inside the zip
+2.Double click the .bat file named "FiddlerChecker"
+3.Follow the steps
 
 
