@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CoCo Assistance Template</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="https://assets.onestore.ms/cdnfiles/external/webcore/4.10.0/stylesheets/WebCore.4.10.0.ltr.light.min.css">
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="/styleguides/services/stylesheets/WebCoreDocs.css"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <script src="https://assets.onestore.ms/cdnfiles/external/webcore/4.10.0/scripts/bootstrap.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+    <style type="text/css">
+        #title {
+            text-align: left;
+        }
+
+        #TitleofIssue,
+        #CaseNumber,
+		#ICM,
+        #customerExpectations,
+        #troubleshootingSteps,
+        #reproSteps,
+        #UcWikiResults,
+		#IssueStartDate,
+		#InsightsUsefulFeedback,
+		#DiagnosticResult{
+            width: 100%;
+            overflow: initial;
+        }
+
+        #reproActualResult, #reproExpectedResult {
+            width: 300px;
+            overflow: initial;
+        }
+
+        #UCWikiLabel, #UcWikiResults,#InsightsUsefulFeedback,#InsightsUsefulLabel,#DiagnosticsLabel,#DiagnosticResult {
+            display: none;
+        }
+
+        #copyButton {
+            width: 100%;
+            height: 50px;
+        }
+
+        body {
+            margin-top: 30px;
+            margin-right: 40px;
+            margin-bottom: 10px;
+            margin-left: 70px;
+        }
+
+        #imgCell{ width: 150px;}
+    </style>
+</head>
+<body>
+    <header class="page-title-header">
+        <table style="width: 100%">
+            <tr>
+                <td id="imgCell">
+                    <img alt="" src="https://learn.microsoft.com/en-us/media/logos/logo_msteams.svg" />
+                </td>
+                <td>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 id="title" class="page-title win-color-fg-blue">CoCo Assistance Template</h1>
+                </td>
+            </tr>
+        </table>
+        
+    </header>
+    <!-- Case Basic details -->
+    <section class="section">
+        <header class="section-header">
+            <h2 class="section-title">Case Details</h2>
+        </header>
+        <div class="section-body">
+		<div class="form-group">
+                <label class="text-base">Title of issue</label>
+            </div>
+            <input  type="text" id="TitleofIssue" onchange="ValidateText('TitleofIssue')" placeholder="Please provide the title of the issue. Ex: Unable to open Teams">
+
+            <div class="form-group">
+                <label class="text-base">Support Case Number</label>
+            </div>
+            <input id="CaseNumber" type="text" placeholder="DfM / Rave case number">
+			<div class="form-group">
+                <label class="text-base">ICM</label>
+            </div>
+            <input id="ICM" type="text" placeholder="Input ICM URL if it exists">
+
+
+        </div>
+    </section>
+    <!-- Knowledgebase used and Self-Help -->
+    <section class="section">
+        <header class="section-header">
+            <h2 class="section-title">Knowledge base and Self-help</h2>
+        </header>
+	<div class="form-group">
+                <label class="text-base">Was the UC Wiki consulted? <a href="https://aka.ms/ucwiki/">https://aka.ms/ucwiki</a></label>
+            </div>
+            <select id="UCwikiConsulted" onchange="UCWikiFunc()">
+                <option value="noSelection" disabled selected>Select Option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <div id="UCWikiLabel" class="form-group">
+                <label class="text-base">Results</label>
+            </div>
+            <textarea class="text-body" id="UcWikiResults" rows="4" aria-multiline="True" aria-multiselectable="True" onchange="ValidateText('UcWikiResults')" contenteditable="true" placeholder="What was the outcome of UC Wiki?"></textarea>
+           <div class="form-group">
+                <label class="text-base">Were the Assist365 Insights useful? <a href="https://eu.assist.microsoft.com/">Assist365 EU</a> or <a href="https://assist.microsoft.com/">Assist365 Global</a></label>
+            </div>
+            <select id="InsightsUseful" onchange="InsightsUsefulFunc()">
+                <option value="noSelection" disabled selected>Select Option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+			<div id="InsightsUsefulLabel" class="form-group">
+                <label class="text-base">Results</label>
+            </div>
+            <textarea class="text-body" id="InsightsUsefulFeedback" rows="4" aria-multiline="True" aria-multiselectable="True" onchange="ValidateText('InsightsUsefulFeedback')" contenteditable="true" placeholder="Why were the insights not useful?"></textarea>
+           
+			<div class="form-group">
+                <label class="text-base">Have you executed any RAVE/Assist365 diagnostics?</label>
+            </div>
+            <select id="DiagnosticsExecuted" onchange="ShowDiagnostics()">
+                <option value="noSelection" disabled selected>Select Option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <div id="DiagnosticsLabel" class="form-group">
+                <label class="text-base">Results</label>
+            </div>
+            <textarea class="text-body" id="DiagnosticResult" rows="4" aria-multiline="True" aria-multiselectable="True" onchange="ValidateText('DiagnosticResult')" contenteditable="true" placeholder="Which diagnostics were executed and what was the outcome of them?"></textarea>
+    </section>
+    
+    <!-- problem reproduction -->
+    <section class="section">
+        <header class="section-header">
+            <h2 class="section-title">Issue Investigation</h2>
+        </header>
+        <div class="section-body">
+		<div class="form-group">
+                <label class="text-base">When did the issue start?</label>
+            </div>
+			            <input id="IssueStartDate" type="text" placeholder=" 25th December 2000 / Issue started to happen last week.">
+
+            <div class="form-group">
+                <label class="text-base">How often can we repro the behavior?</label>
+            </div>
+            <select id="problemIsReproducible" onchange="ValidateSelection('problemIsReproducible')">
+                <option value="noSelection" disabled selected>Select</option>
+                <option value="Always">Always, I can also repro in-house</option>
+                <option value="CustomerOnly">Customer can always repro, I can't.</option>
+                <option value="TotalyRandom">Customer repros sometimes, I was never able to repro.</option>
+            </select>
+            <div class="form-group">
+                <label class="text-base">What is the issue? How is the problem reproduced?</label>
+            </div>
+            <textarea class="text-body" id="reproSteps" rows="6" aria-multiline="True" aria-multiselectable="True" contenteditable="true" onchange="ValidateText('reproSteps')" placeholder="Give as many details as possible, click for click. Please avoid copy-pasting customer’s verbatim&#xd;&#xa;1.&#xd;&#xa;2.&#xd;&#xa;3.&#xd;&#xa;etc..."></textarea>
+            <p></p>
+            <textarea class="text-body" id="reproActualResult" rows="4" aria-multiline="True" aria-multiselectable="True" contenteditable="true" onchange="ValidateText('reproActualResult')" placeholder="Actual result"></textarea>
+            <textarea class="text-body" id="reproExpectedResult" rows="4" aria-multiline="True" aria-multiselectable="True" contenteditable="true" onchange="ValidateText('reproExpectedResult')" placeholder="Expected result"></textarea>
+        </div>
+    
+         <div class="section-body">
+		<div class="form-group">
+                <label class="text-base">Did you collect Teams logs?</label>
+            </div>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-toggle-switch">
+                    <input id="TeamsLogsCollected" type="checkbox" checked>
+                    <span class="status-on">Yes, we have Teams available.</span>
+                    <span class="status-off">No, we don't have Teams logs available.</span>
+                </label>
+            </div>
+            <textarea id="troubleshootingSteps" class="text-body" rows="6" aria-multiline="True" aria-multiselectable="True" contenteditable="true" onchange="ValidateText('troubleshootingSteps')" placeholder="List all the troubleshooting steps performed during the investigation AND their results"></textarea>
+        </div>
+</section>
+  
+
+    <!-- where the magic happens -->
+    <button id="copyButton" class="btn btn-primary">Copy to clipboard</button>
+    <script>
+        // where the text is copied to the clipboard
+        var clipboard = new Clipboard('#copyButton', {
+            text: function () {
+                if (ValidateAll()) {
+                    var template = CreateTemplate();
+                    document.getElementById("copyButton").textContent = "Template successfully copied to clipboard. You can now paste it in MSSolve and close this window.";
+                    return template;
+                }
+
+                document.getElementById("copyButton").textContent = "Copy to clipboard";
+                //window.showTooltip(e.trigger, window.fallbackMessage(e.action));
+                // return String.empty;
+                //return;
+                window.alert("Please fill in all required fields of this template.");
+                return null;
+            }
+        });
+
+        clipboard.on('success', function (e) {
+            console.log(e);
+            //showTooltip(e.trigger, 'Copied!');
+        });
+
+        clipboard.on('error', function (e) {
+            console.log(e);
+            // showTooltip(e.trigger, window.fallbackMessage(e.action));
+        });
+        
+        // validate all fields
+        function ValidateAll() {
+            var validateCaseTitle = ValidateText("TitleofIssue");
+            var validateCaseNumber = ValidateText("CaseNumber");
+			var validateWikiConsulted = ValidateSelection("UCwikiConsulted");
+            var validateUcWikiResults = true;
+            if (document.getElementById("UCwikiConsulted").value === "yes") {
+                validateUcWikiResults = ValidateText("UcWikiResults");
+            }
+			var validateInsightsUseful = ValidateSelection("InsightsUseful");
+            var validateInsightsUsefulFeedback = true;
+            if (document.getElementById("InsightsUseful").value === "no") {
+                validateInsightsUsefulFeedback = ValidateText("InsightsUsefulFeedback");
+            }
+			var validateDiagnosticsExecuted = ValidateSelection("DiagnosticsExecuted");
+            var validateDiagnosticResult = true;
+            if (document.getElementById("DiagnosticsExecuted").value === "yes") {
+                validateDiagnosticResult = ValidateText("DiagnosticResult");
+            }
+            var validateIssueDateStart = ValidateText("IssueStartDate");      
+            var validateProblemRepro = ValidateSelection("problemIsReproducible");
+            var validateReproSteps = ValidateText("reproSteps");
+            var validateReproActualResult = ValidateText("reproActualResult");
+            var validateReproExpectedResult = ValidateText("reproExpectedResult");
+            var validateTroubleshooting = ValidateText("troubleshootingSteps");
+            
+            return validateCaseTitle &
+                validateCaseNumber&
+                validateWikiConsulted &
+                validateUcWikiResults &
+                validateInsightsUseful &
+				validateProblemRepro &
+				validateReproSteps &
+                validateInsightsUsefulFeedback &
+                validateDiagnosticsExecuted &
+				validateDiagnosticResult &
+                validateReproActualResult &
+                validateReproExpectedResult &
+                validateTroubleshooting;
+        }
+
+        // Show UC wiki consulted fields
+        function UCWikiFunc() {
+            var UCWikused = document.getElementById("UCwikiConsulted");
+            if (UCWikused.value === "yes") {
+                document.getElementById("UCWikiLabel").style.display = "block";
+                document.getElementById("UcWikiResults").style.display = "block";
+                
+            } else {
+                document.getElementById("UCWikiLabel").style.display = "none";
+                document.getElementById("UcWikiResults").style.display = "none";
+                
+            }
+
+            ValidateSelection("UCwikiConsulted");
+        }
+		
+		 // Show Results of Assit365 insights Useful
+        function InsightsUsefulFunc() {
+            var Insightgood = document.getElementById("InsightsUseful");
+            if (Insightgood.value === "no") {
+                document.getElementById("InsightsUsefulLabel").style.display = "block";
+                document.getElementById("InsightsUsefulFeedback").style.display = "block";
+                
+            } else {
+                document.getElementById("InsightsUsefulLabel").style.display = "none";
+                document.getElementById("InsightsUsefulFeedback").style.display = "none";
+            
+            }
+
+            ValidateSelection("InsightsUseful");
+        }
+		
+		 // Show Results of Assit365/Rave diagnostics
+        function ShowDiagnostics() {
+            var Diagused = document.getElementById("DiagnosticsExecuted");
+            if (Diagused.value === "yes") {
+                document.getElementById("DiagnosticsLabel").style.display = "block";
+                document.getElementById("DiagnosticResult").style.display = "block";
+                
+            } else {
+                document.getElementById("DiagnosticsLabel").style.display = "none";
+                document.getElementById("DiagnosticResult").style.display = "none";
+            
+            }
+
+            ValidateSelection("DiagnosticsExecuted");
+        }
+
+        // validate a text/input field
+        function ValidateText(field) {
+            var prodesc = document.getElementById(field);
+            if (prodesc.value === '') {
+                prodesc.className += " has-error";
+                return false;
+            } else {
+                prodesc.className = "text-body";
+                document.getElementById("copyButton").textContent = "Copy to clipboard";
+                return true;
+            }
+        }
+
+        // validate a select
+        function ValidateSelection(selectId) {
+            var select = document.getElementById(selectId);
+            if (select.value === "" || select.value === "noSelection") {
+                select.style.color = "red";
+                return false;
+            } else {
+                select.style.color = '';
+                document.getElementById("copyButton").textContent = "Copy to clipboard";
+                return true;
+            }
+        }
+
+        // concatenate the strings to build the template text
+        function CreateTemplate() {
+            var CaseDetails =
+                "========================\nCoCo Assistance Template\n========================" +
+                    "\nTitle of Issue: " + document.getElementById("TitleofIssue").value +
+                    "\nSupport Case Number: " + document.getElementById("CaseNumber").value +
+					"\nICM: " + document.getElementById("ICM").value;
+            
+
+            var KnowledgeBaseSelfHelp =
+               "============================\nKnowledge base and Self-help\n============================" +
+			   "\nWas the UC Wiki consulted? - " + document.getElementById("UCwikiConsulted").value;
+
+            if (document.getElementById("UCwikiConsulted").value === "yes") {
+                KnowledgeBaseSelfHelp += "\nUC Wiki Results:\n" + document.getElementById("UcWikiResults").value;
+            }
+			
+			KnowledgeBaseSelfHelp += "\nWere the Assist365 Insights useful? - " + document.getElementById("InsightsUseful").value;
+
+            if (document.getElementById("InsightsUseful").value === "no") {
+                KnowledgeBaseSelfHelp += "\nAssist365 Insights Feedback:\n" + document.getElementById("InsightsUsefulFeedback").value;
+            }
+			KnowledgeBaseSelfHelp += "\nHave you executed any RAVE/Assist365 diagnostics? - " + document.getElementById("DiagnosticsExecuted").value;
+
+            if (document.getElementById("DiagnosticsExecuted").value === "yes") {
+                KnowledgeBaseSelfHelp += "\nRAVE/Assist365 diagnostics Results:\n" + document.getElementById("DiagnosticResult").value;
+            }
+			
+
+            var IssueInvestigation =
+                "==================\nIssue Investigation\n==================" +
+                    "\nWhen did the issue start?\n " + document.getElementById("IssueStartDate").value +
+                    "\nHow often can we repro the behavior?\n" + document.getElementById("problemIsReproducible").options[document.getElementById("problemIsReproducible").selectedIndex].text +
+                    "\nWhat is the issue? How is the problem reproduced:\n" + document.getElementById("reproSteps").value +
+					"\n Actual Result:\n" + document.getElementById("reproActualResult").value + 
+					"\n Expected Result:\n" + document.getElementById("reproExpectedResult").value;
+
+            var troubleshooting =
+                "==========================\nTroubleshooting Performed\n==========================" +
+                "\nDid you collect Teams logs? - " + document.getElementById("TeamsLogsCollected").checked.toString() +
+                "\nTroubleshoting Steps performed:\n" + document.getElementById("troubleshootingSteps").value;
+
+            
+
+            return CaseDetails + "\n\n" + KnowledgeBaseSelfHelp + "\n\n" + IssueInvestigation + "\n\n" + troubleshooting;
+        }
+
+    </script>
+</body>
+</html>
