@@ -2,6 +2,33 @@
 
 This page is used for easy access to all the scripts I have put together.
 
+### Tracker de preços — Homycasa Vulcan
+
+O tracker acompanha [este sofá e a variante selecionada](https://homycasa.pt/products/sofacantovulcan-sofa-de-canto-vulcan-relax-eletrico?variant=57783062004095).
+Regista o preço em EUR, o preço de referência, a percentagem de desconto anunciada
+e a disponibilidade num [histórico CSV](data/homycasa-vulcan.csv).
+O histórico só passa a existir depois da primeira consulta bem-sucedida.
+
+- **Automático:** o workflow **Homycasa price tracker** consulta diariamente às 08:00 UTC
+  (09:00 em Portugal continental no horário de verão) e guarda o histórico neste repositório.
+  O agendamento só fica ativo depois de o workflow estar na branch predefinida, com
+  GitHub Actions ativo e permissões para escrever nessa branch.
+- **Manual:** em **Actions → Homycasa price tracker → Run workflow**.
+  O resumo da execução mostra o preço, o desconto e a variação desde a consulta anterior.
+- **Local:** com Python 3.10 ou superior, executar `python3 tracker/homycasa.py`
+  a partir da raiz do repositório. Não precisa de instalar bibliotecas.
+  Para escolher outro histórico: `python3 tracker/homycasa.py --history /caminho/historico.csv`.
+- **Testes:** `python3 -m unittest discover -s tests -v`.
+
+O tracker usa o endpoint JSON público do produto (`.js`), esperando preços em cêntimos.
+Se o site mudar esse formato, bloquear o acesso ou remover a variante, a consulta falha
+sem registar um preço fictício. Não recupera preços anteriores à primeira execução.
+Os descontos são calculados a partir do preço de referência da loja: não validam o
+menor preço dos últimos 30 dias e não incluem cupões, portes ou campanhas no checkout.
+Não são enviadas notificações de preço por email ou outros canais.
+O acesso real ao site não pôde ser confirmado no ambiente de desenvolvimento;
+é necessário confirmar a primeira execução manual.
+
 ### [SaRACMDScript (Automated SaRA Command-Line Version)](https://github.com/ricardoMpacheco/SaRACMDScript)
 This small script allows the process for the usage of the SaRA support tool command-line version to be as automated as possible.
 
@@ -37,5 +64,4 @@ The script can be access by downloading it directly from the button to the right
 2.Double click the .bat file named "FiddlerChecker"
 
 3.Follow the steps
-
 

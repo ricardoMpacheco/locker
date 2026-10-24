@@ -1,0 +1,37 @@
+name: Homycasa price tracker
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homycasa-tracker-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4.3.0
+        with:
+          ref: ${{ github.ref }}
+      - name: Check tracker
+        run: python3 -m unittest discover -s tests -v
+      - name: Record price and promotion
+        run: python3 tracker/homycasa.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Save price history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/homycasa-vulcan.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Record Homycasa sofa price"
+            git push
+          fi
